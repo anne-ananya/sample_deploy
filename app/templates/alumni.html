@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Information</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Alumni Information</h1>
+        <nav>
+            <a href="{{ url_for('main.index') }}">Home</a>
+            <a href="{{ url_for('main.faculty') }}">Faculty Information</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Alumni List</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Year of Graduation</th>
+                        <th>Department</th>
+                        <th>Current Position</th>
+                        <th>Email</th>
+                        <th>Contact Info</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for alumnus in alumni %}
+                    <tr>
+                        <td>{{ alumnus.name }}</td>
+                        <td>{{ alumnus.year_of_graduation }}</td>
+                        <td>{{ alumnus.department }}</td>
+                        <td>{{ alumnus.current_position }}</td>
+                        <td>{{ alumnus.email }}</td>
+                        <td>{{ alumnus.contact_info }}</td>
+                        <td class="actions">
+                            <form action="{{ url_for('main.update_alumni', id=alumnus.id) }}" method="POST">
+                                <input type="text" name="name" value="{{ alumnus.name }}" required>
+                                <input type="text" name="year_of_graduation" value="{{ alumnus.year_of_graduation }}" required>
+                                <input type="text" name="department" value="{{ alumnus.department }}" required>
+                                <input type="text" name="current_position" value="{{ alumnus.current_position }}">
+                                <input type="email" name="email" value="{{ alumnus.email }}" required>
+                                <input type="text" name="contact_info" value="{{ alumnus.contact_info }}">
+                                <button type="submit">Update Alumni</button>
+                            </form>
+                            <form action="{{ url_for('main.delete_alumni', id=alumnus.id) }}" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <section>
+        <h2>Add New Alumni</h2>
+        <form action="{{ url_for('main.add_alumni') }}" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="year_of_graduation">Year of Graduation:</label>
+            <input type="text" id="year_of_graduation" name="year_of_graduation" required>
+        
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" required>
+        
+            <label for="current_position">Current Position:</label>
+            <input type="text" id="current_position" name="current_position">
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="contact_info">Contact Info:</label>
+            <input type="text" id="contact_info" name="contact_info">
+        
+            <button type="submit">Add Alumni</button>
+        </form>       
+    </section>
+</body>
+</html>

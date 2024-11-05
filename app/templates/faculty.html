@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Information</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Faculty Information</h1>
+        <nav>
+            <a href="{{ url_for('main.index') }}">Home</a>
+            <a href="{{ url_for('main.alumni') }}">Alumni Information</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Faculty List</h2>
+        <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Research Area</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for faculty in faculty_list %}
+                <tr>
+                    <td>
+                        {% if faculty.image_url %}
+                        <img src="{{ url_for('static', filename=faculty.image_url) }}" alt="{{ faculty.name }}" width="80" height="80">
+                        {% else %}
+                        <span>No Image</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ faculty.name }}</td>
+                    <td>{{ faculty.department }}</td>
+                    <td>{{ faculty.email }}</td>
+                    <td>{{ faculty.phone }}</td>
+                    <td>
+                        {{ faculty.research_area }}
+                        <br>
+                        <!-- Google Scholar Button -->
+                        {% set scholar_query = faculty.name.replace(" ", "+") + "+iiest" %}
+                        <a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q={{ scholar_query }}" target="_blank">
+                            <button type="button">Google Scholar</button>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{{ url_for('main.update_faculty', faculty_id=faculty.id) }}" method="POST">
+                            <input type="text" name="name" value="{{ faculty.name }}" required>
+                            <input type="text" name="department" value="{{ faculty.department }}" required>
+                            <input type="email" name="email" value="{{ faculty.email }}" required>
+                            <input type="text" name="phone" value="{{ faculty.phone }}">
+                            <input type="text" name="research_area" value="{{ faculty.research_area }}">
+                            <button type="submit">Update Faculty</button>
+                        </form>
+                        <form action="{{ url_for('main.delete_faculty', faculty_id=faculty.id) }}" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </section>
+
+    <section>
+        <h2>Add New Faculty</h2>
+        <form action="{{ url_for('main.add_faculty') }}" method="POST" enctype="multipart/form-data">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" required>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone">
+        
+            <label for="research_area">Research Area:</label>
+            <input type="text" id="research_area" name="research_area">
+        
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+        
+            <button type="submit">Add Faculty</button>
+        </form>        
+    </section>
+</body>
+</html>

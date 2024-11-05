@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIEST Web Portal</title>
+    <style>
+        /* Basic reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f0f2f5;
+        }
+
+        /* Header styling */
+        .header-bar {
+            background-color: #079e4e;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Carousel styling */
+        .carousel-container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+            margin: 20px auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel img {
+            width: 100%;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel img:hover {
+            transform: scale(1.05);
+        }
+
+        /* About section styling */
+        .about-container {
+            text-align: center;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .about-container:hover {
+            background-color: #e0e7ff;
+        }
+
+        .about-container h2 {
+            color: #0073e6;
+        }
+
+        .about-container p {
+            display: none;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* Map styling */
+        .map-container {
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header with green bar -->
+    <div class="header-bar">
+        <header>
+            <h1>Welcome to IIEST</h1>
+            <nav>
+                <a href="{{ url_for('main.faculty') }}">Faculty Information</a>
+                <a href="{{ url_for('main.alumni') }}">Alumni Information</a>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Image Carousel -->
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="{{ url_for('static', filename='uploads/iiest_1.jpg') }}" alt="Image 1">
+            <img src="{{ url_for('static', filename='uploads/iiest_2.jpg') }}" alt="Image 2">
+            <img src="{{ url_for('static', filename='uploads/iiest_3.jpg') }}" alt="Image 3">
+            <img src="{{ url_for('static', filename='uploads/iiest_4.jpg') }}" alt="Image 4">
+        </div>
+    </div>
+
+    <!-- About IIEST Section -->
+    <div class="about-container" onclick="toggleDescription()">
+        <h2>About IIEST</h2>
+        <p id="about-text">Indian Institute of Engineering Science and Technology, Shibpur, is a premier institution in India offering advanced education in engineering, science, and technology. Known for its rich history and commitment to excellence, IIEST stands as a beacon of innovation and research...</p>
+    </div>
+
+    <!-- Google Map Embed -->
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.6409938560837!2d88.30358927475659!3d22.555117333611932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0279c91a8d2d49%3A0xc6ee508c74cf031d!2sIndian%20Institute%20of%20Engineering%20Science%20and%20Technology%2C%20Shibpur%20(IIEST)!5e0!3m2!1sen!2sin!4v1730833711351!5m2!1sen!2sin" 
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+
+        function rotateCarousel() {
+            const carousel = document.querySelector('.carousel');
+            const images = carousel.querySelectorAll('img');
+            currentIndex = (currentIndex + 1) % images.length;
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        document.querySelectorAll('.carousel img').forEach(img => {
+            img.addEventListener('click', rotateCarousel);
+        });
+
+        function toggleDescription() {
+            const aboutText = document.getElementById('about-text');
+            aboutText.style.display = aboutText.style.display === 'none' || !aboutText.style.display ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

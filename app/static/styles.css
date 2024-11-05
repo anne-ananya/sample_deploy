@@ -1,0 +1,234 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333333;
+}
+
+header {
+    background-color: #079e4e;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Section styles */
+section {
+    margin: 20px auto;
+    max-width: 900px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+section h2 {
+    color: #13794d;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+/* Table container with vertical and horizontal scrollbar */
+.table-container {
+    max-height: 400px; /* Adjust as needed for vertical space */
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #dce4ea;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #e1e2e4;
+}
+
+table th {
+    background-color: #333;
+    color: #fff;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Flexbox for Action buttons */
+td.actions {
+    display: flex;
+    gap: 5px;
+}
+
+/* Styling for form inputs within actions */
+td.actions form input {
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 5px;
+}
+
+td.actions form button {
+    margin-top: 5px;
+    background-color: #0fbd83;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+td.actions form button:hover {
+    background-color: #054936;
+}
+/* Form styling */
+section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+section form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+section form input, section form button {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+section form button {
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+section form button:hover {
+    background-color: #555;
+}
+/* General Styles */
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+header {
+    background-color: #0db149;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header nav a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    color: #ddd;
+}
+
+/* Scrollable Image Gallery */
+.scrolling-gallery {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px;
+    background-color: #e3e3e8;
+}
+
+.gallery-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.gallery-wrapper img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.gallery-wrapper img:hover {
+    transform: scale(1.05);
+}
+
+/* About Section */
+.about-section {
+    padding: 20px;
+    text-align: center;
+    background-color: #e3e3e8;
+    margin: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.about-section:hover {
+    background-color: #d1d1d6;
+}
+
+.about-section h2 {
+    color: #333;
+}
+
+.about-section #short-description {
+    font-weight: bold;
+    color: #666;
+}
+
+.about-section #full-description {
+    color: #555;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Map Section */
+.map-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #e9e9ef;
+    border-top: 1px solid #ddd;
+}
+
+.map-section iframe {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
