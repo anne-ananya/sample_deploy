@@ -9,3 +9,7 @@ def create_app():
     app.config.from_object(Config)
     db.init_app(app)
     return app
+
+# Ensure that `app` is accessible at the top level
+app = create_app()
+
