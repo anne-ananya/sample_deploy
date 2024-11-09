@@ -1,15 +1,8 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from config import Config
+from app import create_app
 
-db = SQLAlchemy()
-
-def create_app():
-    app = Flask(__name__)
-    app.config.from_object(Config)
-    db.init_app(app)
-    return app
-
-# Ensure that `app` is accessible at the top level
 app = create_app()
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 
