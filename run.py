@@ -1,6 +1,11 @@
-from app import create_app
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from config import Config
 
-app = create_app()
+db = SQLAlchemy()
 
-if __name__ == '__main__':
-    app.run(debug=True)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    db.init_app(app)
+    return app
